@@ -92,7 +92,13 @@ VALID
 
 ## Usage
 
-After installing `Stitching React Example` and setting up `Stitching`, go to `/node_modules/stitching-react-example` folder, modify `init_stitching.js` with the right values:
+After installing `Stitching React Example` and setting up `Stitching`, go to `node_modules/stitching-react-example` folder:
+
+```js
+cd ./node_modules/stitching-react-example
+```
+
+Modify `init_stitching.js` with the right values:
 
 ```js
 // Modules
@@ -103,13 +109,12 @@ StitchingReact.connect(
     "https://stitch.mongodb.com", // Use your endpoint
     "mongodb-atlas", // Use your cluster
     "example", // Use your DB name
-    "metadata" // Use the collection name that you want to use for metadata
+    "metadata" // Use your metadata collection name
 );
 ```
 
 After you update `init_stitching.js`, run start task:
 
 ```js
-cd ./node_modules/stitching-react-example
 npm run start
 ```
