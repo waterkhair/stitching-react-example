@@ -11,6 +11,7 @@ A React example project for [Stitching React](https://www.npmjs.com/package/stit
     - [Setting up Email/Password authentication](https://www.npmjs.com/package/stitching-react-example#setting-up-emailpassword-authentication)
     - [Creating optional metadata collection](https://www.npmjs.com/package/stitching-react-example#creating-optional-metadata-collection)
         - [Top-Level Document](https://www.npmjs.com/package/stitching-react-example#top-level-document)
+  - [Usage](https://www.npmjs.com/package/stitching-react-example#usage)
 
 ## Documentation
 
@@ -88,3 +89,27 @@ VALID
 ```
 
 **Note:** Email/Password authentication doesn't handle metadata out of the box. This means that after login to your MongoDB Stitch app, you don't have other information regarding the email. We need a collection to save user name, date of birth, address, etc. This is optional and we can skip this step.
+
+## Usage
+
+After installing `Stitching React Example` and setting up `Stitching`, go to `/node_modules/stitching-react-example` folder, modify `init_stitching.js` with the right values:
+
+```js
+// Modules
+import StitchingReact from "stitching-react";
+
+StitchingReact.connect(
+    "example-XXXXX", // Use your APP ID
+    "https://stitch.mongodb.com", // Use your endpoint
+    "mongodb-atlas", // Use your cluster
+    "example", // Use your DB name
+    "metadata" // Use the collection name that you want to use for metadata
+);
+```
+
+After you update `init_stitching.js`, run start task:
+
+```js
+cd ./node_modules/stitching-react-example
+npm run start
+```
