@@ -1,0 +1,30 @@
+{
+  "name": "stitching-react-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "set PORT=8080 && react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "author": "Jesus Barajas",
+  "license": "ISC",
+  "dependencies": {
+    "react": "16.1.1",
+    "react-bootstrap": "0.31.5",
+    "react-dom": "16.1.1",
+    "react-redux": "5.0.6",
+    "react-router-dom": "4.2.2",
+    "react-router-redux": "5.0.0-alpha.6",
+    "react-scripts": "1.0.17",
+    "redux": "3.7.2",
+    "redux-thunk": "2.2.0",
+    "stitching-react": "0.0.6"
+  },
+  "devDependencies": {
+    "eslint": "4.12.0",
+    "eslint-plugin-react": "7.5.1"
+  }
+}

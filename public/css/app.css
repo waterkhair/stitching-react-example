@@ -1,0 +1,44 @@
+.loading-screen {
+    background-color: rgba(0,0,0,0.5);
+    left: 0;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    z-index: 10;
+}
+
+.loading {
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    border: 2vmin solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 2vmin solid #555555;
+    height: 50vmin;
+    margin: 25vmin auto 0px;
+    width: 50vmin;
+}
+
+.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.menu li {
+    float: left;
+}
+
+.menu li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.menu li a:hover {
+    background-color: #111;
+}
