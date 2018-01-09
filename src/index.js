@@ -1,6 +1,6 @@
 // Modules
 import "./init_stitching";
-import {ConfirmComponent, HomeComponent, LoginComponent, ProfileComponent, ResetComponent} from "./components";
+import {ConfirmComponent, HomeComponent, LoginComponent, LogoutComponent, ProfileComponent, ResetComponent} from "./components";
 import {ConnectedRouter, routerMiddleware} from "react-router-redux";
 import {Route, Switch} from "react-router-dom";
 import {applyMiddleware, compose, createStore} from "redux";
@@ -27,6 +27,7 @@ render(
             <Switch>
                 <Route component={HomeComponent} exact key={0} name="Home" path="/" />
                 <Route component={LoginComponent} key={1} name="Login" path="/login" />
+                <Route component={LogoutComponent} key={2} name="Logout" path="/logout" />
                 <Route component={ConfirmComponent} key={3} name="Catalog" path="/confirm" />
                 <Route component={ProfileComponent} key={4} name="Profile" path="/profile" />
                 <Route component={ResetComponent} key={5} name="Reset" path="/reset" />

@@ -1,6 +1,6 @@
 // Modules
 import {Col, Grid, Row} from "react-bootstrap";
-import {Confirm, Login, Profile, ResetPassword, stitching} from "stitching-react";
+import {Confirm, Login, Logout, Profile, ResetPassword} from "stitching-react";
 import {NavLink, Redirect} from "react-router-dom";
 import {Actions} from "./redux";
 import React from "react";
@@ -48,7 +48,7 @@ const mapStateToProps = (state) => ({
     AuthState: state.AuthState
 });
 const matchDispatchToProps = (dispatch) => bindActionCreators(Actions, dispatch);
-const renderMenuLink = (to, text, onClick) => <li><NavLink activeStyle={ACTIVE_LINK_STYLE} onClick={onClick} style={LINK_STYLE} to={to}>{text}</NavLink></li>;
+const renderMenuLink = (to, text) => <li><NavLink activeStyle={ACTIVE_LINK_STYLE} style={LINK_STYLE} to={to}>{text}</NavLink></li>;
 
 // Components
 class BaseReactComponent extends React.Component {
@@ -57,7 +57,6 @@ class BaseReactComponent extends React.Component {
         if (!this.props.AuthState.isAuthenticated) {
             this.props.getCurrentUserProfile();
         }
-        this.onLogout = this.onLogout.bind(this);
     }
 
     componentWillMount() {
@@ -70,15 +69,6 @@ class BaseReactComponent extends React.Component {
         if (nextProps.AuthState.isAuthenticated && !PATHS.AUTHENTICATED.includes(this.props.location.pathname)) {
             this.props.history.push(this.props.AppState.currentLocation);
         }
-    }
-
-    onLogout(event) {
-        event.preventDefault();
-        stitching.auth
-            .logout()
-            .then(() => {
-                this.props.setCredentials({}, false);
-            });
     }
 
     render() {
@@ -107,7 +97,7 @@ class BaseReactComponent extends React.Component {
                             </li>
                             {this.props.AuthState.isAuthenticated ? null : renderMenuLink("/login", "Login")}
                             {this.props.AuthState.isAuthenticated ? renderMenuLink("/profile", "Profile") : null}
-                            {this.props.AuthState.isAuthenticated ? renderMenuLink("/logout", "Logout", this.onLogout) : null}
+                            {this.props.AuthState.isAuthenticated ? renderMenuLink("/logout", "Logout") : null}
                         </ul>
                     </Col>
                 </Row>
@@ -195,6 +185,27 @@ class LoginReactComponent extends React.Component {
         );
     }
 }
+class LogoutReactComponent extends React.Component {
+    constructor(props) {
+        super(props);
+        this.onLogout = this.onLogout.bind(this);
+    }
+
+    onLogout() {
+        this.props.setCredentials({}, false);
+    }
+
+    render() {
+        const {themeColor} = this.props.AppState;
+        return (
+            <BaseComponent>
+                <Logout
+                    onLogout={this.onLogout}
+                    themeColor={themeColor} />
+            </BaseComponent>
+        );
+    }
+}
 class ProfileReactComponent extends React.Component {
     constructor(props) {
         super(props);
@@ -266,12 +277,14 @@ class ResetReactComponent extends React.Component {
 export const ConfirmComponent = connect(mapStateToProps, matchDispatchToProps)(ConfirmReactComponent);
 export const HomeComponent = connect(mapStateToProps, matchDispatchToProps)(HomeReactComponent);
 export const LoginComponent = connect(mapStateToProps, matchDispatchToProps)(LoginReactComponent);
+export const LogoutComponent = connect(mapStateToProps, matchDispatchToProps)(LogoutReactComponent);
 export const ProfileComponent = connect(mapStateToProps, matchDispatchToProps)(ProfileReactComponent);
 export const ResetComponent = connect(mapStateToProps, matchDispatchToProps)(ResetReactComponent);
 export default {
     ConfirmComponent,
     HomeComponent,
     LoginComponent,
+    LogoutComponent,
     ProfileComponent,
     ResetComponent
 };
