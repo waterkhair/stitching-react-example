@@ -1,3 +1,12 @@
+.menu .active-link {
+    background-color: #000
+}
+
+.menu .link {
+    color: white;
+    text-decoration: none;
+}
+
 .menu ul {
     list-style-type: none;
     margin: 0;
