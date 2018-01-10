@@ -21,7 +21,7 @@
     "react-scripts": "1.0.17",
     "redux": "3.7.2",
     "redux-thunk": "2.2.0",
-    "stitching-react": "0.0.18"
+    "stitching-react": "0.0.19"
   },
   "devDependencies": {
     "eslint": "4.12.0",
