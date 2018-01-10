@@ -1,6 +1,6 @@
 // Modules
 import {Col, Grid, Row} from "react-bootstrap";
-import {Confirm, Login, Logout, Profile, ResetPassword} from "stitching-react";
+import {Confirm, Loading, Login, Logout, Profile, ResetPassword, stitching} from "stitching-react";
 import {NavLink, Redirect} from "react-router-dom";
 import {Actions} from "./redux";
 import React from "react";
@@ -45,7 +45,7 @@ const VALUE_INDEX = 1;
 // Utils
 const mapStateToProps = (state) => ({
     AppState: state.AppState,
-    AuthState: state.AuthState
+    StitchingReactState: state.StitchingReactState
 });
 const matchDispatchToProps = (dispatch) => bindActionCreators(Actions, dispatch);
 const renderMenuLink = (to, text) => <li><NavLink activeStyle={ACTIVE_LINK_STYLE} style={LINK_STYLE} to={to}>{text}</NavLink></li>;
@@ -54,8 +54,8 @@ const renderMenuLink = (to, text) => <li><NavLink activeStyle={ACTIVE_LINK_STYLE
 class BaseReactComponent extends React.Component {
     constructor(props) {
         super(props);
-        if (!this.props.AuthState.isAuthenticated) {
-            this.props.getCurrentUserProfile();
+        if (!this.props.StitchingReactState.isAuthenticated) {
+            this.props.getCurrentUserProfile(stitching);
         }
     }
 
@@ -66,27 +66,20 @@ class BaseReactComponent extends React.Component {
     }
 
     componentWillUpdate(nextProps) {
-        if (nextProps.AuthState.isAuthenticated && !PATHS.AUTHENTICATED.includes(this.props.location.pathname)) {
+        if (nextProps.StitchingReactState.isAuthenticated && !PATHS.AUTHENTICATED.includes(this.props.location.pathname)) {
             this.props.history.push(this.props.AppState.currentLocation);
         }
     }
 
     render() {
-        let loadingScreen = null;
-        if (this.props.AppState.loading) {
-            loadingScreen =
-                <div className="loading-screen">
-                    <div className="loading"></div>
-                </div>;
-        }
-        if (!this.props.AuthState.isAuthenticated && !PATHS.PUBLIC.includes(this.props.location.pathname)) {
+        if (!this.props.StitchingReactState.isAuthenticated && !PATHS.PUBLIC.includes(this.props.location.pathname)) {
             return (
                 <Redirect to="/login" />
             );
         }
         return (
             <Grid>
-                { loadingScreen }
+                <Loading loading={this.props.StitchingReactState.loading} />
                 <Row>
                     <Col {...COL_PROPS} className="menu">
                         <ul>
@@ -95,9 +88,9 @@ class BaseReactComponent extends React.Component {
                                     Home
                                 </NavLink>
                             </li>
-                            {this.props.AuthState.isAuthenticated ? null : renderMenuLink("/login", "Login")}
-                            {this.props.AuthState.isAuthenticated ? renderMenuLink("/profile", "Profile") : null}
-                            {this.props.AuthState.isAuthenticated ? renderMenuLink("/logout", "Logout") : null}
+                            {this.props.StitchingReactState.isAuthenticated ? null : renderMenuLink("/login", "Login")}
+                            {this.props.StitchingReactState.isAuthenticated ? renderMenuLink("/profile", "Profile") : null}
+                            {this.props.StitchingReactState.isAuthenticated ? renderMenuLink("/logout", "Logout") : null}
                         </ul>
                     </Col>
                 </Row>
@@ -217,7 +210,7 @@ class ProfileReactComponent extends React.Component {
     }
 
     render() {
-        const {credentials} = this.props.AuthState;
+        const {credentials} = this.props.StitchingReactState;
         return (
             <BaseComponent>
                 <Profile
