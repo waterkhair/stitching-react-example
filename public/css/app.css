@@ -1,3 +1,7 @@
+.menu {
+    min-width: 400px;
+}
+
 .menu .active-link {
     background-color: #000
 }

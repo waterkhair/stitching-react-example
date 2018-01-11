@@ -7,8 +7,8 @@ import React from "react";
 
 // Constants
 const COL_PROPS = {
-    md: 4,
-    mdOffset: 4,
+    md: 8,
+    mdOffset: 2,
     sm: 6,
     smOffset: 3,
     xs: 10,
