@@ -40,7 +40,9 @@ class ResetPage extends React.Component {
         const {themeColor} = this.props.AppState;
         return (
             <MainLayout>
+                <span className="title">Reset your password</span>
                 <ResetPassword
+                    disableBorder={true}
                     onPasswordReset={this.onPasswordReset}
                     onSendResetPassword={this.onSendResetPassword}
                     themeColor={themeColor}

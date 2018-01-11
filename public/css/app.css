@@ -34,3 +34,7 @@
 .menu li a:hover {
     background-color: #111;
 }
+
+.title {
+    margin-left: 50px;
+}
