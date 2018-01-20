@@ -26,8 +26,10 @@ class LoginPage extends React.Component {
         return (
             <MainLayout>
                 <Login
+                    border={true}
                     facebookButton={true}
                     googleButton={true}
+                    padding={true}
                     onLogin={this.onLogin}
                     onResetPassword={this.onResetPassword}
                     themeColor={themeColor}

@@ -42,9 +42,10 @@ class ResetPage extends React.Component {
             <MainLayout>
                 <span className="title">Reset your password</span>
                 <ResetPassword
-                    disableBorder={true}
+                    border={false}
                     onPasswordReset={this.onPasswordReset}
                     onSendResetPassword={this.onSendResetPassword}
+                    padding={false}
                     themeColor={themeColor}
                     token={this.state.params.token}
                     tokenId={this.state.params.tokenId} />
